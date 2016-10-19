@@ -3,7 +3,7 @@
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
-require './vendor/autoload.php';
+require '../vendor/autoload.php';
 
 $config = [
     'settings' => [
@@ -24,6 +24,6 @@ $app->get('/hello/{name}', function (\Psr\Http\Message\ServerRequestInterface $r
     return $response;
 });
 $app->group('/kerio', function () {
-    $this->get('/users', 'Controllers\Kerio\KerioWrapper:getUsers');
+    $this->get('/users', 'Controllers\Kerio:getUsers');
 });
 $app->run();

@@ -11,10 +11,11 @@
     },
     "autoload": {
         "psr-4": {
-            "Controllers\\": "Controllers/"
+            "Controllers\\": "application/Controllers/",
+            "Models\\": "application/Models/"
         },
         "files": [
-            "Libs/Kerio/KerioControlApi.php"
+            "application/Libs/Kerio/KerioControlApi.php"
         ]
     }
 }

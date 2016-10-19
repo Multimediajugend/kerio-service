@@ -1,3 +1,4 @@
 # composer files
 /vendor
 *.lock
+/application/config.php

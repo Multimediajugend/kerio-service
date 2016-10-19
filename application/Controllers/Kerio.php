@@ -15,7 +15,7 @@ class Kerio
     }
     public function getUsers($req, $res, $args)
     {
-        $kerioConfig = new \Models\KerioConfigModel('KerioWrapper', 'Organisation', '1.0', '192.168.2.111', 'admin', '*****');
+        $kerioConfig = new \Models\KerioConfigModel($this->ci['settings']['kerio']['servicename'], $this->ci['settings']['kerio']['serviceorganization'], $this->ci['settings']['kerio']['serviceversion'], $this->ci['settings']['kerio']['host'], $this->ci['settings']['kerio']['user'], $this->ci['settings']['kerio']['pass']);
         $model = new \Models\Kerio($kerioConfig);
         
         $res = $res->withJson($model->getUsers());

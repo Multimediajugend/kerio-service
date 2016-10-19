@@ -4,19 +4,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
 require '../vendor/autoload.php';
+require '../application/config.php';
 
-$config = [
-    'settings' => [
-        'displayErrorDetails' => true,
-        'logger' => [
-            'name' => 'slim-app',
-            'level' => Monolog\Logger::DEBUG,
-            'path' => __DIR__ . '/logs/app.log',
-        ],
-    ],
-];
-
-$app = new \Slim\App($config);
+$app = new \Slim\App(["settings" => $config]);
 
 $app->get('/hello/{name}', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response) {
     $name = $request->getAttribute('name');

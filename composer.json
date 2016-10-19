@@ -14,7 +14,7 @@
             "Controllers\\": "Controllers/"
         },
         "files": [
-            "Kerio/KerioControlApi.php"
+            "Libs/Kerio/KerioControlApi.php"
         ]
     }
 }

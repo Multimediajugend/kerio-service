@@ -1,0 +1,31 @@
+{
+  "name": "kerio-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "dependencies": {
+    "angular": "^1.5.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Multimediajugend/kerio-service.git"
+  },
+  "keywords": [
+    "kerio",
+    "control",
+    "api",
+    "frontend",
+    "user",
+    "administration"
+  ],
+  "author": "Tilmann Bach",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Multimediajugend/kerio-service/issues"
+  },
+  "homepage": "https://github.com/Multimediajugend/kerio-service#readme"
+}

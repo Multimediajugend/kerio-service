@@ -2,3 +2,4 @@
 /vendor
 *.lock
 /application/config.php
+node_modules

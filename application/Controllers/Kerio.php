@@ -10,7 +10,6 @@ class Kerio
     
     protected $kerioConfig;
 
-    //C	onstructor
     public function __construct(ContainerInterface $ci)
     {
         $this->ci = $ci;
@@ -19,20 +18,21 @@ class Kerio
     public function getUsers($req, $res, $args)
     {
         $model = new \Models\Kerio($this->kerioConfig);
-        
         $res = $res->withJson($model->getUsers());
-        
         return $res;
     }
     public function addUser($req, $res, $args)
     {
         $model = new \Models\Kerio($this->kerioConfig);
         $payload = $req->getParsedBody();
+        if (!$payload || !isset($payload["username"]) || !isset($payload["fullname"]) || !isset($payload["password"]) || !isset($payload["email"])) {
+            return $res->withStatus(400);
+        }
         try {
-            $newUser = $model->addUser('tilli', 'Tilmann Bach', 'test', 'tilli14@msn.com');
+            $newUser = $model->addUser(filter_var($payload["username"]), filter_var($payload["fullname"]), filter_var($payload["password"]), filter_var($payload["email"], FILTER_VALIDATE_EMAIL));
             $res = $res->withJson($newUser);
         } catch (\KerioApiException $e) {
-            $res = $res->withJson(['error'=>$e->getCode(), 'message'=>$e->getMessage()]);
+            $res = $res->withJson(['error'=>$e->getCode(), 'message'=>$e->getMessage()])->withStatus(400);
         }
         return $res;
     }

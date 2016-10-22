@@ -13,8 +13,10 @@ $app->get('/hello/{name}', function (\Psr\Http\Message\ServerRequestInterface $r
     $response->getBody()->write("Hello, {$name}");
     return $response;
 });
+
 $app->group('/kerio', function () {
     $this->get('/users', 'Controllers\Kerio:getUsers');
     $this->put('/user', 'Controllers\Kerio:addUser');
 });
+
 $app->run();

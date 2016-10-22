@@ -49,8 +49,8 @@ class Kerio
                       "userName" => $username,
                       "password" => $pass
                   ),
-                  "email" => filter_var($email, FILTER_VALIDATE_EMAIL),
-                  "fullName" => filter_var($name),
+                  "email" => $email,
+                  "fullName" => $name,
                   "localEnabled" => true
               )
            ),

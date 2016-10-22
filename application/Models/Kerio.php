@@ -39,4 +39,23 @@ class Kerio
         $users = $this->kerioApi->sendRequest("Users.get", $params);
         return $users;
     }
+
+    public function addUser($username, $name, $pass, $email)
+    {
+        $params = array(
+          "users" => array(
+              array(
+                  "credentials" => array(
+                      "userName" => $username,
+                      "password" => $pass
+                  ),
+                  "email" => filter_var($email, FILTER_VALIDATE_EMAIL),
+                  "fullName" => filter_var($name),
+                  "localEnabled" => true
+              )
+           ),
+           "domainId" => "local"
+        );
+        return $this->kerioApi->sendRequest("Users.create", $params);
+    }
 }

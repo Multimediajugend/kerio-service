@@ -17,6 +17,8 @@ $app->get('/hello/{name}', function (\Psr\Http\Message\ServerRequestInterface $r
 $app->group('/kerio', function () {
     $this->get('/users', 'Controllers\Kerio:getUsers');
     $this->put('/user', 'Controllers\Kerio:addUser');
+    $this->get('/user/{username}', 'Controllers\Kerio:getUserByLogin');
+    $this->post('/user/{username}/password', 'Controllers\Kerio:setUsersPassword');
 });
 
 $app->run();

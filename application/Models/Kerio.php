@@ -8,6 +8,8 @@ class Kerio
     protected $kerioConfig;
     protected $kerioApi;
     protected $kerioSession;
+
+    protected $userlist;
     
     public function __construct(KerioConfigModel $kerioConfig)
     {
@@ -25,7 +27,8 @@ class Kerio
 
     public function getUsers()
     {
-        $params = array(
+        if (!$this->userlist) {
+            $params = array(
           "query" => array(
               "start" => 0,
               "limit" => -1,
@@ -36,8 +39,22 @@ class Kerio
            ),
            "domainId" => "local"
         );
-        $users = $this->kerioApi->sendRequest("Users.get", $params);
-        return $users;
+            $users = $this->kerioApi->sendRequest("Users.get", $params);
+            $this->userlist = $users;
+        }
+        return $this->userlist;
+    }
+
+    public function getUserByUsername($username)
+    {
+        $this->getUsers();
+        $user = null;
+        foreach ($this->userlist["list"] as $u) {
+            if ($u["credentials"]["userName"] === $username) {
+                $user = $u;
+            }
+        }
+        return $user;
     }
 
     public function addUser($username, $name, $pass, $email)
@@ -57,5 +74,15 @@ class Kerio
            "domainId" => "local"
         );
         return $this->kerioApi->sendRequest("Users.create", $params);
+    }
+    
+    public function setUsersPassword($userid, $user)
+    {
+        $params = array(
+            "userIds" => array($userid),
+            "details" => $user,
+           "domainId" => "local"
+        );
+        return $this->kerioApi->sendRequest("Users.set", $params);
     }
 }

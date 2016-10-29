@@ -64,11 +64,20 @@ class Kerio
               array(
                   "credentials" => array(
                       "userName" => $username,
-                      "password" => $pass
+                      "password" => $pass,
+                      "passwordChanged" => true
                   ),
                   "email" => $email,
                   "fullName" => $name,
-                  "localEnabled" => true
+                  "localEnabled" => true,
+                  "groups" => array(
+                        array(
+                            "id"=> "1d0fff49-4f0e-1b45-a8a0-ca153d83bb04",
+                            "name"=> "Clanwars",
+                            "isGroup"=> true,
+                            "domainName"=> ""
+                        )
+                  )
               )
            ),
            "domainId" => "local"

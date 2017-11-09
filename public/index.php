@@ -21,4 +21,12 @@ $app->group('/kerio', function () {
     $this->post('/user/{username}/password', 'Controllers\Kerio:setUsersPassword');
 });
 
+$app->add(function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $next) {
+    $settings = $this->get('settings');
+    if (!in_array($settings['api']['token'], $request->getHeader('api-token'))) {
+        return $response->withStatus(401);
+    }
+    return $next($request, $response);
+});
+
 $app->run();

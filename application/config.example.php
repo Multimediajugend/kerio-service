@@ -1,6 +1,7 @@
 <?php
 
 $config['displayErrorDetails'] = true;
+$config['api']['token'] = "thisIsAVerySecretString";
 
 $config['logger']['name'] = 'kerio-service';
 $config['logger']['level'] = Monolog\Logger::DEBUG;

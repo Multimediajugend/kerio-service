@@ -17,5 +17,8 @@
         "files": [
             "application/Libs/Kerio/KerioControlApi.php"
         ]
+    },
+    "scripts": {
+        "start": "cd public && php -S 127.0.0.1:51337"
     }
 }
